@@ -228,11 +228,42 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShubmV0KVxuc2V0LnNlZWQoMTAwMClcbk5ldXJhbE5ldHdvcmsxIDwtIG5uZXQoQ3JlZGl0X1Jpc2sgfiBDcmVkaXRfU2NvcmUgKyBMYXRlX1BheW1lbnRzICsgTW9udGhzX0luX0pvYiArIFxuICAgICAgIERlYnRfSW5jb21lX1JhdGlvICsgTG9hbl9BbXQgKyBMaXF1aWRfQXNzZXRzICsgTnVtX0NyZWRpdF9MaW5lcywgZGF0YT1UcmFpbmluZ1NldCwgc2l6ZT04LCBtYXhpdD0xMDAwMCApXG5gYGAifQ== -->
+<pre class="r"><code>library(nnet)
+set.seed(1000)
+NeuralNetwork1 &lt;- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In_Job + 
+       Debt_Income_Ratio + Loan_Amt + Liquid_Assets + Num_Credit_Lines, data=TrainingSet, size=8, maxit=10000 )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIyB3ZWlnaHRzOiAgMTA5XG5pbml0aWFsICB2YWx1ZSAxNzIzLjY5NDQzOCBcbml0ZXIgIDEwIHZhbHVlIDkxOS42OTU1NTFcbmZpbmFsICB2YWx1ZSA5MTkuNjIwMTQwIFxuY29udmVyZ2VkXG4ifQ== -->
+<pre><code># weights:  109
+initial  value 1723.694438 
+iter  10 value 919.695551
+final  value 919.620140 
+converged</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTmV1cmFsTmV0UHJlZGljdCA8LSBwcmVkaWN0KE5ldXJhbE5ldHdvcmsxLCBTY29yaW5nU2V0LCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0eXBlID0gXCJjbGFzc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>NeuralNetPredict &lt;- predict(NeuralNetwork1, ScoringSet, 
+                            type = &quot;class&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUmVzdWx0cyA8LSBkYXRhLmZyYW1lKE5ldXJhbE5ldFByZWRpY3QsU2NvcmluZ1NldClcbmBgYCJ9 -->
+<pre class="r"><code>Results &lt;- data.frame(NeuralNetPredict,ScoringSet)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVmlldyhSZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>View(Results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTmV1cmFsIE5ldHdvcmsiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgoKYGBge3J9CgpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTmV1cmFsIE5ldHdvcmsiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0KbGlicmFyeShubmV0KQpzZXQuc2VlZCgxMDAwKQpOZXVyYWxOZXR3b3JrMSA8LSBubmV0KENyZWRpdF9SaXNrIH4gQ3JlZGl0X1Njb3JlICsgTGF0ZV9QYXltZW50cyArIE1vbnRoc19Jbl9Kb2IgKyAKICAgICAgIERlYnRfSW5jb21lX1JhdGlvICsgTG9hbl9BbXQgKyBMaXF1aWRfQXNzZXRzICsgTnVtX0NyZWRpdF9MaW5lcywgZGF0YT1UcmFpbmluZ1NldCwgc2l6ZT04LCBtYXhpdD0xMDAwMCApCmBgYApgYGB7Un0KTmV1cmFsTmV0UHJlZGljdCA8LSBwcmVkaWN0KE5ldXJhbE5ldHdvcmsxLCBTY29yaW5nU2V0LCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR5cGUgPSAiY2xhc3MiKQpgYGAKCmBgYHtSfQpSZXN1bHRzIDwtIGRhdGEuZnJhbWUoTmV1cmFsTmV0UHJlZGljdCxTY29yaW5nU2V0KQpgYGAKCmBgYHtSfQpWaWV3KFJlc3VsdHMpCmBgYA==</div>
 
 
 
@@ -279,7 +310,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Neural Network.Rmd");
+  window.initializeSourceEmbed("NeuralNetworkInfo3410.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
