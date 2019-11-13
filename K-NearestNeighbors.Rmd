@@ -1,0 +1,29 @@
+---
+title: "Cluster Modeling"
+output: html_notebook
+---
+
+
+
+```{r}
+# invoke classification library
+library(class)
+TrainingSet <- #dataset# 
+ScoringSet <- #scoringdataset# 
+attach(ScoringSet)
+attach(TrainingSet)
+```
+
+```{r}
+library(car)
+recode(TrainingSet$DependentVariable, "Category1" =1 , "Category2"=2, "Category3"=3)
+recode(ScoringSet$DependentVariable, "Category1"=1, "Category2"=2, "Category3"=3)
+```
+
+```{r}
+Predictions <- knn(TrainingSet, ScoringSet, DependentVariable, k=1, 1=0, prob = FALSE, use.all = TRUE)
+```
+
+```{r}
+data.frame( Predictions)
+```

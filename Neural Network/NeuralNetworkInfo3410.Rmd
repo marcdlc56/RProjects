@@ -6,18 +6,23 @@ output: html_notebook
 
 ```{r}
 library(nnet)
+attach(ScoringSet)
 set.seed(1000)
 NeuralNetwork1 <- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In_Job + 
        Debt_Income_Ratio + Loan_Amt + Liquid_Assets + Num_Credit_Lines, data=TrainingSet, size=8, maxit=10000 )
 ```
+
+
 ```{R}
 NeuralNetPredict <- predict(NeuralNetwork1, ScoringSet, 
                             type = "class")
 ```
 
+
 ```{R}
 Results <- data.frame(NeuralNetPredict,ScoringSet)
 ```
+
 
 ```{R}
 View(Results)
