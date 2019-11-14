@@ -1,0 +1,8 @@
+---
+title: "K-Means Script"
+output: html_notebook
+---
+
+```{r}
+plot(cars)
+```
