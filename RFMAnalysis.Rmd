@@ -18,25 +18,31 @@ head(bmdata)
 ```{r}
 bmdata$Recency <- round(as.numeric(difftime(Sys.Date(),bmdata[,2],unit="days")))
 
+```
+
+
+```{r}
 bmdataR <- aggregate(bmdata[,4],list(bmdata$customer_ID),min)
 names(bmdataR) <- c("customer_ID","Recency")
+```
 
+```{r}
 # frequency
 bmdataF <- aggregate(bmdata[,2],list(bmdata$customer_ID),length)
 names(bmdataF) <- c("customer_ID","Frequency")
+```
 
+```{r}
 # monetary
 bmdataM <- aggregate(bmdata[,3],list(bmdata$customer_ID),sum)
 names(bmdataM) <- c("customer_ID","Monetary")
 
+```
+
+```{r}
 # RFM dataframe
 bmdataRFM <-merge(merge(bmdataR,bmdataF),bmdataM)
 
-# this is commented because I've not used it.
-# bmdataRFM$salespervisit <- bmdataRFM$Monetary/bmdataRFM$Frequency
-
-
-# here the ranks
 bmdataRFM$rankR <- cut(bmdataRFM$Recency,5,labels=F)
 bmdataRFM$rankF <- cut(bmdataRFM$Frequency,5,labels=F)
 bmdataRFM$rankM <- cut(bmdataRFM$Monetary,5,labels=F)
