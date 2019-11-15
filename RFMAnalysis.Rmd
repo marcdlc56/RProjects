@@ -3,6 +3,47 @@ title: "RFM Analysis"
 output: html_notebook
 ---
 
+
+Create Mock Dataset for RFM Analysis, Change this for future script purposes
 ```{r}
-plot(cars)
+library("rfm")
+set.seed(12)
+customer_ID <- sample(1:500, 500, rep = TRUE)
+sales_date <- sample(seq(as.Date('2016/01/01'), as.Date('2017/12/01'), by="day"), 500)
+sales <- sample(20:400, 500, rep = TRUE)
+bmdata <- data.frame (customer_ID,sales_date,sales)
+head(bmdata)
+```
+
+```{r}
+bmdata$Recency <- round(as.numeric(difftime(Sys.Date(),bmdata[,2],unit="days")))
+
+bmdataR <- aggregate(bmdata[,4],list(bmdata$customer_ID),min)
+names(bmdataR) <- c("customer_ID","Recency")
+
+# frequency
+bmdataF <- aggregate(bmdata[,2],list(bmdata$customer_ID),length)
+names(bmdataF) <- c("customer_ID","Frequency")
+
+# monetary
+bmdataM <- aggregate(bmdata[,3],list(bmdata$customer_ID),sum)
+names(bmdataM) <- c("customer_ID","Monetary")
+
+# RFM dataframe
+bmdataRFM <-merge(merge(bmdataR,bmdataF),bmdataM)
+
+# this is commented because I've not used it.
+# bmdataRFM$salespervisit <- bmdataRFM$Monetary/bmdataRFM$Frequency
+
+
+# here the ranks
+bmdataRFM$rankR <- cut(bmdataRFM$Recency,5,labels=F)
+bmdataRFM$rankF <- cut(bmdataRFM$Frequency,5,labels=F)
+bmdataRFM$rankM <- cut(bmdataRFM$Monetary,5,labels=F)
+
+```
+
+```{r}
+
+head(bmdataRFM)
 ```
