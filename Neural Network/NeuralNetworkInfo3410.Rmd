@@ -6,10 +6,13 @@ output: html_notebook
 
 ```{r}
 library(nnet)
+ScoringSet <- read.csv("~/Desktop/PersonalProjects/RProjects/Neural Network/Chapter11Scoring.csv")
+TrainingSet <- read.csv("/Users/marcdelacruz/Desktop/PersonalProjects/RProjects/Neural Network/Chapter11Exercise_TrainingData (1).csv")
 attach(ScoringSet)
 set.seed(1000)
 NeuralNetwork1 <- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In_Job + 
-       Debt_Income_Ratio + Loan_Amt + Liquid_Assets + Num_Credit_Lines, data=TrainingSet, size=8, maxit=10000 )
+       Debt_Income_Ratio + Loan_Amt + Liquid_Assets + Num_Credit_Lines, 
+       data=, size=8, maxit=10000 )
 ```
 
 

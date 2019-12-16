@@ -228,13 +228,31 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShubmV0KVxuYXR0YWNoKFNjb3JpbmdTZXQpXG5zZXQuc2VlZCgxMDAwKVxuTmV1cmFsTmV0d29yazEgPC0gbm5ldChDcmVkaXRfUmlzayB+IENyZWRpdF9TY29yZSArIExhdGVfUGF5bWVudHMgKyBNb250aHNfSW5fSm9iICsgXG4gICAgICAgRGVidF9JbmNvbWVfUmF0aW8gKyBMb2FuX0FtdCArIExpcXVpZF9Bc3NldHMgKyBOdW1fQ3JlZGl0X0xpbmVzLCBkYXRhPVRyYWluaW5nU2V0LCBzaXplPTgsIG1heGl0PTEwMDAwIClcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShubmV0KVxuU2NvcmluZ1NldCA8LSByZWFkLmNzdihcIn4vRGVza3RvcC9QZXJzb25hbFByb2plY3RzL1JQcm9qZWN0cy9OZXVyYWwgTmV0d29yay9DaGFwdGVyMTFTY29yaW5nLmNzdlwiKVxuVHJhaW5pbmdTZXQgPC0gcmVhZC5jc3YoXCIvVXNlcnMvbWFyY2RlbGFjcnV6L0Rlc2t0b3AvUGVyc29uYWxQcm9qZWN0cy9SUHJvamVjdHMvTmV1cmFsIE5ldHdvcmsvQ2hhcHRlcjExRXhlcmNpc2VfVHJhaW5pbmdEYXRhICgxKS5jc3ZcIilcbmF0dGFjaChTY29yaW5nU2V0KVxuYGBgIn0= -->
 <pre class="r"><code>library(nnet)
-attach(ScoringSet)
-set.seed(1000)
-NeuralNetwork1 &lt;- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In_Job + 
-       Debt_Income_Ratio + Loan_Amt + Liquid_Assets + Num_Credit_Lines, data=TrainingSet, size=8, maxit=10000 )</code></pre>
+ScoringSet &lt;- read.csv(&quot;~/Desktop/PersonalProjects/RProjects/Neural Network/Chapter11Scoring.csv&quot;)
+TrainingSet &lt;- read.csv(&quot;/Users/marcdelacruz/Desktop/PersonalProjects/RProjects/Neural Network/Chapter11Exercise_TrainingData (1).csv&quot;)
+attach(ScoringSet)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSBTY29yaW5nU2V0IChwb3MgPSAzKTpcblxuICAgIEFwcGxpY2FudF9JRCwgQ3JlZGl0X1Jpc2ssIENyZWRpdF9TY29yZSwgRGVidF9JbmNvbWVfUmF0aW8sXG4gICAgTGF0ZV9QYXltZW50cywgTGlxdWlkX0Fzc2V0cywgTG9hbl9BbXQsIE1vbnRoc19Jbl9Kb2IsXG4gICAgTnVtX0NyZWRpdF9MaW5lc1xuIn0= -->
+<pre><code>The following objects are masked from ScoringSet (pos = 3):
+
+    Applicant_ID, Credit_Risk, Credit_Score, Debt_Income_Ratio,
+    Late_Payments, Liquid_Assets, Loan_Amt, Months_In_Job,
+    Num_Credit_Lines</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0LnNlZWQoMTAwMClcbk5ldXJhbE5ldHdvcmsxIDwtIG5uZXQoQ3JlZGl0X1Jpc2sgfiBDcmVkaXRfU2NvcmUgKyBMYXRlX1BheW1lbnRzICsgTW9udGhzX0luX0pvYiArIFxuICAgICAgIERlYnRfSW5jb21lX1JhdGlvICsgTG9hbl9BbXQgKyBMaXF1aWRfQXNzZXRzICsgTnVtX0NyZWRpdF9MaW5lcywgXG4gICAgICAgZGF0YT0sIHNpemU9OCwgbWF4aXQ9MTAwMDAgKVxuYGBgIn0= -->
+<pre class="r"><code>set.seed(1000)
+NeuralNetwork1 &lt;- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In_Job + 
+       Debt_Income_Ratio + Loan_Amt + Liquid_Assets + Num_Credit_Lines, 
+       data=, size=8, maxit=10000 )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIyB3ZWlnaHRzOiAgNzNcbmluaXRpYWwgIHZhbHVlIDAuMDAwMDAwIFxuZmluYWwgIHZhbHVlIDAuMDAwMDAwIFxuY29udmVyZ2VkXG4ifQ== -->
+<pre><code># weights:  73
+initial  value 0.000000 
+final  value 0.000000 
+converged</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -243,6 +261,10 @@ NeuralNetwork1 &lt;- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In
 <pre class="r"><code>NeuralNetPredict &lt;- predict(NeuralNetwork1, ScoringSet, 
                             type = &quot;class&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcHJlZGljdC5ubmV0KE5ldXJhbE5ldHdvcmsxLCBTY29yaW5nU2V0LCB0eXBlID0gXCJjbGFzc1wiKSA6IFxuICBpbmFwcHJvcHJpYXRlIGZpdCBmb3IgY2xhc3NcbiJ9 -->
+<pre><code>Error in predict.nnet(NeuralNetwork1, ScoringSet, type = &quot;class&quot;) : 
+  inappropriate fit for class</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -259,7 +281,7 @@ NeuralNetwork1 &lt;- nnet(Credit_Risk ~ Credit_Score + Late_Payments + Months_In
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTmV1cmFsIE5ldHdvcmsiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0KbGlicmFyeShubmV0KQphdHRhY2goU2NvcmluZ1NldCkKc2V0LnNlZWQoMTAwMCkKTmV1cmFsTmV0d29yazEgPC0gbm5ldChDcmVkaXRfUmlzayB+IENyZWRpdF9TY29yZSArIExhdGVfUGF5bWVudHMgKyBNb250aHNfSW5fSm9iICsgCiAgICAgICBEZWJ0X0luY29tZV9SYXRpbyArIExvYW5fQW10ICsgTGlxdWlkX0Fzc2V0cyArIE51bV9DcmVkaXRfTGluZXMsIGRhdGE9VHJhaW5pbmdTZXQsIHNpemU9OCwgbWF4aXQ9MTAwMDAgKQpgYGAKCgpgYGB7Un0KTmV1cmFsTmV0UHJlZGljdCA8LSBwcmVkaWN0KE5ldXJhbE5ldHdvcmsxLCBTY29yaW5nU2V0LCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR5cGUgPSAiY2xhc3MiKQpgYGAKCgpgYGB7Un0KUmVzdWx0cyA8LSBkYXRhLmZyYW1lKE5ldXJhbE5ldFByZWRpY3QsU2NvcmluZ1NldCkKYGBgCgoKYGBge1J9ClZpZXcoUmVzdWx0cykKYGBg</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTmV1cmFsIE5ldHdvcmsiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0KbGlicmFyeShubmV0KQpTY29yaW5nU2V0IDwtIHJlYWQuY3N2KCJ+L0Rlc2t0b3AvUGVyc29uYWxQcm9qZWN0cy9SUHJvamVjdHMvTmV1cmFsIE5ldHdvcmsvQ2hhcHRlcjExU2NvcmluZy5jc3YiKQpUcmFpbmluZ1NldCA8LSByZWFkLmNzdigiL1VzZXJzL21hcmNkZWxhY3J1ei9EZXNrdG9wL1BlcnNvbmFsUHJvamVjdHMvUlByb2plY3RzL05ldXJhbCBOZXR3b3JrL0NoYXB0ZXIxMUV4ZXJjaXNlX1RyYWluaW5nRGF0YSAoMSkuY3N2IikKYXR0YWNoKFNjb3JpbmdTZXQpCnNldC5zZWVkKDEwMDApCk5ldXJhbE5ldHdvcmsxIDwtIG5uZXQoQ3JlZGl0X1Jpc2sgfiBDcmVkaXRfU2NvcmUgKyBMYXRlX1BheW1lbnRzICsgTW9udGhzX0luX0pvYiArIAogICAgICAgRGVidF9JbmNvbWVfUmF0aW8gKyBMb2FuX0FtdCArIExpcXVpZF9Bc3NldHMgKyBOdW1fQ3JlZGl0X0xpbmVzLCAKICAgICAgIGRhdGE9LCBzaXplPTgsIG1heGl0PTEwMDAwICkKYGBgCgoKYGBge1J9Ck5ldXJhbE5ldFByZWRpY3QgPC0gcHJlZGljdChOZXVyYWxOZXR3b3JrMSwgU2NvcmluZ1NldCwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0eXBlID0gImNsYXNzIikKYGBgCgoKYGBge1J9ClJlc3VsdHMgPC0gZGF0YS5mcmFtZShOZXVyYWxOZXRQcmVkaWN0LFNjb3JpbmdTZXQpCmBgYAoKCmBgYHtSfQpWaWV3KFJlc3VsdHMpCmBgYA==</div>
 
 
 
